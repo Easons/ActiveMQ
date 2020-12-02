@@ -41,7 +41,6 @@ public class JmsProduce {
         messageProducer.close();
         session.close();
         connection.close();
-
         System.out.println("***发送完成***");
     }
 }
