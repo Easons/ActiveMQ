@@ -25,7 +25,7 @@ public class JmsConsumer {
         MessageConsumer consumer = session.createConsumer(queue);
         while (true)
         {
-            TextMessage receive = (TextMessage)consumer.receive();//会一直等待
+            TextMessage receive = (TextMessage)consumer.receive(4000L);//不加时间会一直等待，加了时间4秒后停止
             if(receive != null)
             {
                 System.out.println("消费者接收到消息*******"+receive.getText());
