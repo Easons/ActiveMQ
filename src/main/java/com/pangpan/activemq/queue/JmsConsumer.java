@@ -6,7 +6,9 @@ import javax.jms.*;
 import java.io.IOException;
 
 public class JmsConsumer {
-    public static final String ACTIVEMQ_URL = "tcp://192.168.56.10:61616/";
+
+    //public  static  final String ACTIVEMQ_URL = "tcp://192.168.56.10:61616/";
+    public  static  final String ACTIVEMQ_URL = "tcp://192.168.1.103:61616";
     public static final String QUEUE_NAME = "quene01";
 
     public static void main(String[] args) throws JMSException, IOException {
@@ -44,11 +46,35 @@ public class JmsConsumer {
                 TextMessage textMessage = (TextMessage) message;
                 try {
                     System.out.println("消费者接收到消息*******" + textMessage.getText());
+                    System.out.println("消费者接收到消息属性为*******" + textMessage.getStringProperty("c01"));
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (message != null && message instanceof MapMessage) {
+                MapMessage mapMessage = (MapMessage) message;
+                try {
+                    System.out.println("消费者接收到消息*******" + mapMessage.getString("k1"));
                 } catch (JMSException e) {
                     e.printStackTrace();
                 }
             }
         });
+
+//        consumer.setMessageListener(new MessageListener() {
+//            @Override
+//            public void onMessage(Message message) {
+//            if (message != null && message instanceof TextMessage) {
+//                TextMessage textMessage = (TextMessage) message;
+//                try {
+//                    System.out.println("消费者接收到消息*******" + textMessage.getText());
+//                } catch (JMSException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+
 
         System.in.read();//保证控制台不灭，不停止
         consumer.close();

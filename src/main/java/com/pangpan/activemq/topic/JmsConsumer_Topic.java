@@ -6,7 +6,7 @@ import javax.jms.*;
 import java.io.IOException;
 
 public class JmsConsumer_Topic {
-    public static final String ACTIVEMQ_URL = "tcp://192.168.56.10:61616/";
+    public static final String ACTIVEMQ_URL = "tcp://192.168.56.10:61616";
     public static final String TOPIC_NAME = "topic-pangpan";
 
     public static void main(String[] args) throws JMSException, IOException {

@@ -24,6 +24,7 @@ public class JmsProduce_Topic {
         Topic topic = session.createTopic(TOPIC_NAME);
         //5.创建消息的生产者
         MessageProducer messageProducer = session.createProducer(topic);
+        messageProducer.setPriority(10);
         //6.通过使用消息生产者生产3条消息到MQ队列里
         for (int i = 1; i <= 3  ; i++)
         {
