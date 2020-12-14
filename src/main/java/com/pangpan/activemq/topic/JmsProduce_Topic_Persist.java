@@ -6,8 +6,9 @@ import javax.jms.*;
 
 public class JmsProduce_Topic_Persist {
 
-    public  static  final String ACTIVEMQ_URL = "tcp://192.168.56.10:61616/";
-    public  static  final String TOPIC_NAME = "topic-pangpan";
+    public  static  final String ACTIVEMQ_URL = "tcp://192.168.56.10:61616";
+//    public  static  final String TOPIC_NAME = "topic-pangpan";
+    public  static  final String TOPIC_NAME = "topic-jdbc";
 
     public static void main(String[] args) throws JMSException {
 
@@ -18,7 +19,7 @@ public class JmsProduce_Topic_Persist {
 
         //3.创建会话session
         // 参数1：事务   参数2：签收
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
         //4.创建目的地(具体是队列还是Topic) Destination 下有QUEUE 和 TOPIC
         Topic topic = session.createTopic(TOPIC_NAME);
         //5.创建消息的生产者
